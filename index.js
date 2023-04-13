@@ -1,5 +1,5 @@
+import { getCodes } from './generator.js'
 import path from 'node:path'
-import {getCodes} from './generator.js'
 import { createObjectCsvWriter } from 'csv-writer'
 
 const mapCodes = (arr) => {
@@ -14,7 +14,7 @@ const mapCodes = (arr) => {
 const codes = mapCodes(getCodes())
 
 const writer = createObjectCsvWriter({
-	path: path.resolve('countries.csv'),
+	path: path.resolve('codes.csv'),
 	header: [
 		'id'
 	],
