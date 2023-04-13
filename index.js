@@ -1,5 +1,5 @@
 import path from 'node:path'
-import {getCodes} from './anya-generator.js'
+import {getCodes} from './generator.js'
 import { createObjectCsvWriter } from 'csv-writer'
 
 const mapCodes = (arr) => {

@@ -1,10 +1,8 @@
-import config from "./anya-config.js";
-
-
+import config from "./config.js";
 
 export const getCodes = () => {
 	let codes = []
-	for (let i = config.min; i <  config.max; i++) {
+	for (let i = config.min; i < config.max; i++) {
 		const str = "" + i
 		const pad = "0".repeat(config.zeros)
 		let ans = pad.substring(0, pad.length - str.length) + str
