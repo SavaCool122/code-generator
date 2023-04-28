@@ -1,25 +1,17 @@
 import { getCodes } from './generator.js'
-import path from 'node:path'
-import { createObjectCsvWriter } from 'csv-writer'
+import { getConfig } from './config-finder.js'
+import {writeToCvs} from './cvs-creator.js'
+import {Logger} from './logger.js'
 
-const mapCodes = (arr) => {
-	const result = []
-	for (let i = 0; i < arr.length; i++) {
-		const code = arr[i]
-		result.push({id: code})
-	}
-	return result
-}
+const config = getConfig()
 
-const codes = mapCodes(getCodes())
+Logger.print(`🔄 Start processing...`)
+Logger.print(`🍒 template: ${config.template}`)
+Logger.print(`🚠 range: ${config.min} — ${config.max}`)
 
-const writer = createObjectCsvWriter({
-	path: path.resolve('codes.csv'),
-	header: [
-		'id'
-	],
-});
+const codes = getCodes(config)
+const cvsWriterOptions = { filename: config.filename }
+writeToCvs(codes, cvsWriterOptions)
 
-writer.writeRecords(codes).then(() => {
-	console.log('Done!');
-});
+
+
